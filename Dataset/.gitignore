@@ -1,0 +1,4 @@
+# Ignore dataset assets while keeping documentation handy
+*
+!.gitignore
+!README.md
