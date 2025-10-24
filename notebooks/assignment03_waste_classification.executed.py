@@ -629,10 +629,25 @@ def run_custom_cnn_experiment(optimizer_key: str, num_epochs: int = 20) -> Dict[
 # In[15]:
 
 
-# Example:
-# adam_results = run_custom_cnn_experiment("adam")
-# plot_history(adam_results["history"], title="Simple CNN - Adam")
-# plot_confusion_matrix(adam_results["metrics"]["confusion_matrix"], class_names, "Simple CNN - Adam (Test)")
+adam_results = run_custom_cnn_experiment("adam")
+plot_history(adam_results["history"], title="Simple CNN - Adam")
+plot_confusion_matrix(adam_results["metrics"]["confusion_matrix"], class_names, "Simple CNN - Adam (Test)")
+
+print("Adam classification report:")
+print(adam_results["metrics"]["report"])
+
+adam_metrics_table = pd.DataFrame(
+    [
+        {
+            "model": "Simple CNN (Adam)",
+            "test_accuracy": adam_results["metrics"]["accuracy"],
+            "precision_macro": adam_results["metrics"]["precision_macro"],
+            "recall_macro": adam_results["metrics"]["recall_macro"],
+            "f1_macro": adam_results["metrics"]["f1_macro"],
+        }
+    ]
+).set_index("model")
+adam_metrics_table
 
 
 # ### Optional: Learning-Rate Range Test
